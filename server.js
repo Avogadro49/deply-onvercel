@@ -1,23 +1,22 @@
-// const express = require("express");
-// const dotenv = require("dotenv");
-
-// //load env vars
-// dotenv.config({ path: "./config/config.env" });
-
-// const app = express();
-
-// const PORT = process.env.PORT || 5500;
-
-// app.listen(PORT, () => {
-//   console.log(`server running in ${process.env.NODE_ENV} mode on port ${PORT}`);
-// });
 const express = require("express");
 const dotenv = require("dotenv");
+const morgan = require("morgan");
+//?rout files
+const bootcamps = require("./routes/bootcamps");
 
-// Load environment variables from the config file
+//? Load environment variables from the config file
 dotenv.config({ path: "./config/config.env" });
 
 const app = express();
+
+if (process.env.NODE_ENV === "development") {
+  app.use(morgan("dev"));
+}
+//! initialize middleware
+// app.use(logger);
+
+//? Mount Routes
+app.use("/api/v1/bootcamps", bootcamps);
 
 const PORT = process.env.PORT || 9000;
 
