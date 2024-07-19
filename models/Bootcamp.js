@@ -6,13 +6,13 @@ const BootCampSchema = new mongoose.Schema({
     required: [true, "Please Enter Your Name"],
     unique: true,
     trim: true,
-    maxlenght: [50, "Name can not be more than 50 characters"],
+    maxLength: [50, "Name can not be more than 50 characters"],
   },
   slug: String,
   description: {
     type: String,
     required: [true, "Please Add Description"],
-    maxlenght: [500, "Name can not be more than 50 characters"],
+    maxLength: [500, "Name can not be more than 50 characters"],
   },
   website: {
     type: String,
@@ -23,7 +23,7 @@ const BootCampSchema = new mongoose.Schema({
   },
   phone: {
     type: String,
-    maxlenght: [20, "Phone number can not be more than 20 numbers"],
+    maxLength: [20, "Phone number can not be more than 20 numbers"],
   },
   email: {
     type: String,
@@ -60,7 +60,7 @@ const BootCampSchema = new mongoose.Schema({
     street: String,
     city: String,
     state: String,
-    zipcode: String,
+    zipCode: String,
     country: String,
   },
   averageRating: {

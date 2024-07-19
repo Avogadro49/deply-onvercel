@@ -5,6 +5,9 @@ const colors = require("colors");
 
 const connectDB = require("./config/db");
 
+//! error Middleware
+const errorMiddleware = require("./middleware/errorMiddleware");
+
 //?rout files
 const bootcamps = require("./routes/bootcampsRoutes");
 
@@ -16,7 +19,7 @@ connectDB();
 //? initial app
 const app = express();
 
-//? using body parser 
+//? using body parser
 app.use(express.json());
 
 if (process.env.NODE_ENV === "development") {
@@ -27,6 +30,9 @@ if (process.env.NODE_ENV === "development") {
 
 //? Mount Routes
 app.use("/api/v1/bootcamps", bootcamps);
+
+//! Mount Error
+app.use(errorMiddleware);
 
 const PORT = process.env.PORT || 9000;
 
