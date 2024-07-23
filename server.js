@@ -2,6 +2,11 @@ const express = require("express");
 const dotenv = require("dotenv");
 const morgan = require("morgan");
 const colors = require("colors");
+const { IPinfoWrapper } = require("node-ipinfo");
+
+const ipinfo = new IPinfoWrapper(process.env.IPINFO_API_KEY);
+
+// console.log(ipinfo);
 
 const connectDB = require("./config/db");
 

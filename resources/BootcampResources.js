@@ -4,7 +4,9 @@ function bootCampResource(bootcamp) {
     name: bootcamp.name,
     email: bootcamp.email,
     createdAt: bootcamp.createdAt,
-    full_name: [bootcamp.name, bootcamp.email].join(" "),
+    averageCost: bootcamp.averageCost,
+    description: bootcamp.description,
+    //? full_name: [bootcamp.name, bootcamp.email].join(" "),
   };
 }
 
