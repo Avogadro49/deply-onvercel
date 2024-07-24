@@ -1,0 +1,47 @@
+[
+  {
+    "title": "Introduction to Programming",
+    "description": "Learn the basics of programming using Python.",
+    "weeks": "10",
+    "tuition": 500,
+    "minimumSkill": "beginner",
+    "scholarshipAvailable": true,
+    "bootcamp": "669f8afcc2451cab6fb964eb"
+  },
+  {
+    "title": "Advanced Web Development",
+    "description": "Master the skills needed to build complex web applications.",
+    "weeks": "12",
+    "tuition": 1200,
+    "minimumSkill": "advanced",
+    "scholarshipAvailable": false,
+    "bootcamp": "669f8afcc2451cab6fb964e8"
+  },
+  {
+    "title": "Data Science Bootcamp",
+    "description": "Become proficient in data analysis and machine learning.",
+    "weeks": "16",
+    "tuition": 1500,
+    "minimumSkill": "intermediate",
+    "scholarshipAvailable": true,
+    "bootcamp": "669f8afcc2451cab6fb964ea"
+  },
+  {
+    "title": "Front-End Development",
+    "description": "Learn to build beautiful and responsive websites.",
+    "weeks": "8",
+    "tuition": 800,
+    "minimumSkill": "beginner",
+    "scholarshipAvailable": false,
+    "bootcamp": "669f8afcc2451cab6fb964e8"
+  },
+  {
+    "title": "Full-Stack JavaScript",
+    "description": "Gain expertise in both front-end and back-end JavaScript.",
+    "weeks": "14",
+    "tuition": 1300,
+    "minimumSkill": "intermediate",
+    "scholarshipAvailable": true,
+    "bootcamp": "669f8afcc2451cab6fb964ed"
+  }
+]

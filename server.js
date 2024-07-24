@@ -15,6 +15,7 @@ const errorMiddleware = require("./middleware/errorMiddleware");
 
 //?rout files
 const bootcamps = require("./routes/bootcampsRoutes");
+const courses = require("./routes/coursesRoutes");
 
 //? Load environment variables from the config file
 dotenv.config({ path: "./config/config.env" });
@@ -35,6 +36,7 @@ if (process.env.NODE_ENV === "development") {
 
 //? Mount Routes
 app.use("/api/v1/bootcamps", bootcamps);
+app.use("/api/v1/courses", courses);
 
 //! Mount Error
 app.use(errorMiddleware);

@@ -4,10 +4,10 @@ const colors = require("colors");
 const dotenv = require("dotenv");
 
 //? Load env vars
-dotenv.config({ path: "./config/config.env" });
+dotenv.config({ path: "../config/config.env" });
 
 //? Load Models
-const Bootcamp = require("./models/Bootcamp");
+const Bootcamp = require("../models/Bootcamp");
 const { json } = require("express");
 
 //? Connect to DB
@@ -15,7 +15,10 @@ mongoose.connect(process.env.MONGO_URI);
 
 //? Read JSON file
 const bootcamp = JSON.parse(
-  fs.readFileSync([__dirname, "_data", "bootcamp_data.json"].join("/"), "utf-8")
+  fs.readFileSync(
+    [__dirname, "..", "_data", "bootcamp_data.json"].join("/"),
+    "utf-8"
+  )
 );
 
 //? Import into Db

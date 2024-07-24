@@ -6,13 +6,13 @@
     "website": "https://www.codeacademy.com",
     "phone": "1234567890",
     "email": "contact@codeacademy.com",
-    "address": "123 Main Street, Anytown, USA",
+    "address": "123 Main Street, New Londo, USA",
     "location": {
       "type": "Fullstack Development",
       "coordinates": [-73.935242, 40.73061],
-      "formattedAddress": "123 Main Street, Anytown, USA",
+      "formattedAddress": "123 Main Street, New Londo, USA",
       "street": "123 Main Street",
-      "city": "Anytown",
+      "city": "New Londo",
       "state": "NY",
       "zipCode": "10001",
       "country": "USA"

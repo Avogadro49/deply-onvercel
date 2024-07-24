@@ -14,7 +14,7 @@ class BootcampController {
     const reqQuery = { ...req.query };
     // Convert the request query parameters to a JSON string
 
-    const removeFields = ["select"];
+    const removeFields = ["select", "sort", "page", "limit"];
 
     removeFields.forEach((param) => delete reqQuery[param]);
 
@@ -40,11 +40,47 @@ class BootcampController {
       query = query.sort("-createdAt");
     }
 
+    //Pagination
+    const _page = 1;
+    const page = parseInt(req.query.page) || _page;
+    const limit = parseInt(req.query.limit) || process.env.PREPAGE;
+    const startIndex = parseInt(page - 1) * limit;
+    const endIndex = page * limit;
+    const total = await Bootcamp.countDocuments();
+
+    query = query.skip(startIndex).limit(limit);
+
     // Executing query
     const bootcamps = await query;
 
+    //Pagination Result
+    let pagination = {};
+
+    if (endIndex < total) {
+      pagination = {
+        ...pagination,
+        next: {
+          page: page + 1,
+          limit: parseInt(limit),
+        },
+      };
+    }
+
+    if (startIndex > 0) {
+      pagination = {
+        ...pagination,
+        prev: {
+          page: page - 1,
+          limit: parseInt(limit),
+        },
+      };
+    }
+
+    //Response
     res.status(200).json({
       success: true,
+      total: total,
+      pagination,
       data: bootcamps.map((bootcamp) => bootCampResource(bootcamp)),
     });
   });
