@@ -1,4 +1,5 @@
 const Bootcamp = require("../models/Bootcamp");
+const Course = require("../models/Course");
 const bootCampResource = require("../resources/BootcampResources");
 const asyncMiddleware = require("../middleware/asyncMiddleware");
 const ErrorResponse = require("../utils/ErrorResponse");
@@ -14,7 +15,7 @@ class BootcampController {
     const reqQuery = { ...req.query };
     // Convert the request query parameters to a JSON string
 
-    const removeFields = ["select", "sort", "page", "limit"];
+    const removeFields = ["select", "sort", "page", "limit", "include"];
 
     removeFields.forEach((param) => delete reqQuery[param]);
 
@@ -23,8 +24,18 @@ class BootcampController {
     // Replace keywords (gt, gte, lt, lte, lt) with their MongoDB operators counterparts ($gt, $gte, $lt, $lte, $lt)
     // prettier-ignore
     queryStr = queryStr.replace(/\b(gt|gte|lt|lte|in)\b/g, match => ['$', match].join(""));
-    // Parse the modified query string back into a JSON object and use it to create a query with Bootcamp.find
-    query = Bootcamp.find(JSON.parse(queryStr));
+    // Find Resource
+
+    if (req.query.include) {
+      const relationships = req.query.include.split(",");
+      if (relationships.includes("courses")) {
+        query = Bootcamp.find(JSON.parse(queryStr)).populate("courses");
+      } else {
+        query = Bootcamp.find(JSON.parse(queryStr));
+      }
+    } else {
+      query = Bootcamp.find(JSON.parse(queryStr));
+    }
 
     //Select Fields
     if (req.query.select) {
@@ -51,7 +62,7 @@ class BootcampController {
     query = query.skip(startIndex).limit(limit);
 
     // Executing query
-    const bootcamps = await query;
+    // const bootcamps = await query;
 
     //Pagination Result
     let pagination = {};
@@ -76,6 +87,7 @@ class BootcampController {
       };
     }
 
+    const bootcamps = await query;
     //Response
     res.status(200).json({
       success: true,
@@ -130,11 +142,11 @@ class BootcampController {
   //? @access Private
   static destroy = asyncMiddleware(async (req, res, next) => {
     const bootcamp = await Bootcamp.findByIdAndDelete(req.params.id);
-
     if (!bootcamp) {
-      return res.status(400).json({ message: "no Content" });
+      return next(new ErrorResponse("Bootcamp not found", 404));
     }
-    res.status(204).json({ success: true, message: bootcamp });
+
+    res.status(200).json({ success: true, message: "successful deleted" });
   });
 }
 
