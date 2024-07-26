@@ -6,7 +6,7 @@
     "tuition": 500,
     "minimumSkill": "beginner",
     "scholarshipAvailable": true,
-    "bootcamp": "66a240f444d92caf48f1f37f"
+    "bootcamp": "66a382b9cf64d6ef8d7354c2"
   },
   {
     "title": "Advanced Web Development",
@@ -15,7 +15,7 @@
     "tuition": 1200,
     "minimumSkill": "advanced",
     "scholarshipAvailable": false,
-    "bootcamp": "66a240f444d92caf48f1f37d"
+    "bootcamp": "66a382b9cf64d6ef8d7354c0"
   },
   {
     "title": "Data Science Bootcamp",
@@ -24,7 +24,7 @@
     "tuition": 1500,
     "minimumSkill": "intermediate",
     "scholarshipAvailable": true,
-    "bootcamp": "66a240f444d92caf48f1f37e"
+    "bootcamp": "66a382b9cf64d6ef8d7354c1"
   },
   {
     "title": "Front-End Development",
@@ -33,7 +33,7 @@
     "tuition": 800,
     "minimumSkill": "beginner",
     "scholarshipAvailable": false,
-    "bootcamp": "66a240f444d92caf48f1f37c"
+    "bootcamp": "66a382b9cf64d6ef8d7354be"
   },
   {
     "title": "Full-Stack JavaScript",
@@ -42,6 +42,6 @@
     "tuition": 1300,
     "minimumSkill": "intermediate",
     "scholarshipAvailable": true,
-    "bootcamp": "66a240f444d92caf48f1f37b"
+    "bootcamp": "66a382b9cf64d6ef8d7354bd"
   }
 ]

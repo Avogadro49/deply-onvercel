@@ -18,7 +18,6 @@
       "country": "USA"
     },
     "averageRating": 9,
-    "averageCost": 12000,
     "photo": "code-academy.jpg",
     "housing": true,
     "jobAssistance": true,
@@ -44,7 +43,6 @@
       "country": "USA"
     },
     "averageRating": 8,
-    "averageCost": 15000,
     "photo": "tech-bootcamp.jpg",
     "housing": true,
     "jobAssistance": true,
@@ -70,7 +68,6 @@
       "country": "USA"
     },
     "averageRating": 9,
-    "averageCost": 18000,
     "photo": "data-science-institute.jpg",
     "housing": false,
     "jobAssistance": true,
@@ -96,7 +93,6 @@
       "country": "USA"
     },
     "averageRating": 10,
-    "averageCost": 20000,
     "photo": "ai-academy.jpg",
     "housing": true,
     "jobAssistance": false,
@@ -122,7 +118,6 @@
       "country": "USA"
     },
     "averageRating": 7,
-    "averageCost": 14000,
     "photo": "mobile-dev-school.jpg",
     "housing": false,
     "jobAssistance": true,
@@ -148,7 +143,6 @@
       "country": "USA"
     },
     "averageRating": 8,
-    "averageCost": 16000,
     "photo": "game-dev-academy.jpg",
     "housing": true,
     "jobAssistance": false,

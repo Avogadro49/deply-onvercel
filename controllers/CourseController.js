@@ -133,7 +133,10 @@ class CourseController {
 
     if (!bootcamp) {
       return next(
-        new ErrorResponse(`No bootcamp with the id of ${req.params.bootcampId}`)
+        new ErrorResponse(
+          `No bootcamp with the id of ${req.params.bootcampId}`
+        ),
+        404
       );
     }
 
@@ -142,6 +145,53 @@ class CourseController {
     res.status(200).json({
       success: true,
       data: course,
+    });
+  });
+
+  //? @desc Update Course
+  //? @route GET /api/v1/courses
+  //? @route GET /api/v1/courses/:bootcampId/courses
+  //? @access Private
+  static update = asyncMiddleware(async (req, res, next) => {
+    let course = await Course.findById(req.params.id);
+
+    if (!course) {
+      return next(
+        new ErrorResponse(`No course with the id of${req.params.id}`),
+        404
+      );
+    }
+
+    course = await Course.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true,
+    });
+
+    res.status(200).json({
+      success: true,
+      data: course,
+    });
+  });
+
+  //? @desc Delete Course
+  //? @route GET /api/v1/courses
+  //? @route GET /api/v1/courses/:bootcampId/courses
+  //? @access Private
+  static destroy = asyncMiddleware(async (req, res, next) => {
+    let course = await Course.findById(req.params.id);
+
+    if (!course) {
+      return next(
+        new ErrorResponse(`No Course with the id of ${req.params.id}`)
+      );
+    }
+
+    await course.deleteOne();
+
+    // Set status code to 204 if you do not want to return display a message
+    res.status(200).json({
+      success: true,
+      message: "deleted successfully",
     });
   });
 }
