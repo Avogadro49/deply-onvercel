@@ -120,6 +120,21 @@ class BootcampController {
   //? @access Public
   static store = asyncMiddleware(async (req, res, next) => {
     const bootcamp = await Bootcamp.create(req.body);
+
+    const reqBody = { ...req.body, user_id: req.body.id, user: req.body.user };
+
+    // Check if the user has already published a bootcamp
+    const publishedBootcamp = await Bootcamp.findOne({ user_id: req.user.id });
+
+    if (publishedBootcamp && req.user.id !== "admin") {
+      return next(
+        new ErrorResponse(
+          `The user with ID ${req.user.id} has already published a bootcamp`,
+          400
+        )
+      );
+    }
+
     res.status(201).json({ success: true, data: bootcamp });
   });
 
