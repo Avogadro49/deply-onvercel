@@ -11,7 +11,7 @@ const sendTokenResponse = (user, statusCode, res) => {
   res
     .status(statusCode)
     .cookie("token", token, options)
-    .json({ status: "true" });
+    .json({ status: "true", token });
 };
 
 module.exports = sendTokenResponse;

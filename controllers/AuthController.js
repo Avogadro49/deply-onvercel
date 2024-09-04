@@ -52,6 +52,10 @@ class AuthController {
 
     sendTokenResponse(user, 200, res);
   });
+
+  //? @desc Login User
+  //? @route GET /api/v1/auth/login
+  //? @access Public
 }
 
 module.exports = AuthController;
