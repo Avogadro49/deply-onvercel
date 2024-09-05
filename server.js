@@ -2,8 +2,11 @@ const express = require("express");
 const dotenv = require("dotenv");
 const morgan = require("morgan");
 const colors = require("colors");
+const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const { IPinfoWrapper } = require("node-ipinfo");
+const Config = require("./config/config");
+const corsMiddleware = require("./middleware/corsMiddleware");
 
 const ipinfo = new IPinfoWrapper(process.env.IPINFO_API_KEY);
 
@@ -32,6 +35,12 @@ app.use(express.json());
 
 // Cookie parser
 app.use(cookieParser());
+
+//set cors options
+app.use(cors(Config.corsOptions));
+
+//set cors headers
+app.use(corsMiddleware);
 
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
