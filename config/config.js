@@ -1,5 +1,3 @@
-const { options } = require("../routes/authRoute");
-
 class Config {
   static corsOptions = {
     origin: process.env.ALLOWED_ORIGIN || "*",

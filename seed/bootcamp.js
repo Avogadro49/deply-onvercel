@@ -2,15 +2,20 @@ const fs = require("fs");
 const mongoose = require("mongoose");
 const colors = require("colors");
 const dotenv = require("dotenv");
+const path = require("path");
 
 //? Load env vars
-dotenv.config({ path: "../config/config.env" });
+// dotenv.config({ path: __dirname + "/../config/config.env" });
+dotenv.config({ path: path.resolve(__dirname, "../config/config.env") });
 
 //? Load Models
 const Bootcamp = require("../models/Bootcamp");
 const { json } = require("express");
 
 //? Connect to DB
+// const MONGO_URI =
+//   "mongodb+srv://tedozashvilinika:6dVAEvS2t0xMAVfN@database.awks6wv.mongodb.net/app_storage";
+
 mongoose.connect(process.env.MONGO_URI);
 
 //? Read JSON file

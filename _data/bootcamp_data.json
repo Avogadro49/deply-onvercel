@@ -22,7 +22,8 @@
     "housing": true,
     "jobAssistance": true,
     "jobGuarantee": false,
-    "acceptGi": true
+    "acceptGi": true,
+    "user_id": "66d6d730956cd82e999f81eb"
   },
   {
     "name": "Tech Bootcamp",
@@ -47,7 +48,8 @@
     "housing": true,
     "jobAssistance": true,
     "jobGuarantee": false,
-    "acceptGi": true
+    "acceptGi": true,
+    "user_id": "66d6d730956cd82e999f81eb"
   },
   {
     "name": "Data Science Institute",
@@ -72,7 +74,8 @@
     "housing": false,
     "jobAssistance": true,
     "jobGuarantee": true,
-    "acceptGi": true
+    "acceptGi": true,
+    "user_id": "66d6d730956cd82e999f81eb"
   },
   {
     "name": "AI Academy",
@@ -97,7 +100,8 @@
     "housing": true,
     "jobAssistance": false,
     "jobGuarantee": true,
-    "acceptGi": false
+    "acceptGi": false,
+    "user_id": "66d6d730956cd82e999f81eb"
   },
   {
     "name": "Mobile Dev School",
@@ -122,7 +126,8 @@
     "housing": false,
     "jobAssistance": true,
     "jobGuarantee": false,
-    "acceptGi": true
+    "acceptGi": true,
+    "user_id": "66d6d730956cd82e999f81eb"
   },
   {
     "name": "Game Dev Academy",
@@ -147,6 +152,7 @@
     "housing": true,
     "jobAssistance": false,
     "jobGuarantee": false,
-    "acceptGi": false
+    "acceptGi": false,
+    "user_id": "66d6d730956cd82e999f81eb"
   }
 ]
