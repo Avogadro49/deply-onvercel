@@ -2,6 +2,7 @@ const User = require("../models/User");
 const ErrorResponse = require("../utils/ErrorResponse");
 const asyncMiddleware = require("../middleware/asyncMiddleware");
 const sendTokenResponse = require("../utils/sendTokenResponse");
+const { validate } = require("../models/Course");
 
 class AuthController {
   //? @desc Register User
@@ -53,9 +54,28 @@ class AuthController {
     sendTokenResponse(user, 200, res);
   });
 
-  //? @desc Login User
-  //? @route GET /api/v1/auth/login
+  //? @desc Forgot password
+  //? @route POST /api/v1/auth/forgotpassword
   //? @access Public
+  static forgotPassword = asyncMiddleware(async (req, res, next) => {
+    const { email } = req.body;
+    const user = await User.findOne({ email });
+    if (!user) {
+      return next(
+        new ErrorResponse(`There is no user with that email of ${email}`, 404)
+      );
+    }
+
+    //Get reset Token
+    const resetToken = user.getResetPasswordToken();
+
+    await user.save({ validateBeforeSave: false });
+
+    res.status(200).json({
+      status: "Success",
+      data: user,
+    });
+  });
 }
 
 module.exports = AuthController;
