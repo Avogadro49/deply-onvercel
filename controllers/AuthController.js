@@ -1,3 +1,4 @@
+const crypto = require("crypto");
 const User = require("../models/User");
 const ErrorResponse = require("../utils/ErrorResponse");
 const asyncMiddleware = require("../middleware/asyncMiddleware");
@@ -74,7 +75,7 @@ class AuthController {
 
     //Create reset url
     //prettier-ignore
-    const resetUrl = `${req.protocol}://${req.get("host")}/api/v1/resetPassword/${resetToken}`;
+    const resetUrl = `${req.protocol}://${req.get("host")}/api/v1/auth/resetPassword/${resetToken}`;
 
     const message = `You are receiving this email because you (or someone else) has requested the reset of a password. Please make a PUT request to: \n\n ${resetUrl}`;
 
@@ -94,11 +95,34 @@ class AuthController {
 
       return next(new ErrorResponse("Email could not be sent", 500));
     }
+  });
 
-    res.status(200).json({
-      status: "Success",
-      data: user,
+  //? @desc Reset password
+  //? @route POST /api/v1/auth/resetpassword/:resettoken
+  //? @access Private
+  static resetPassword = asyncMiddleware(async (req, res, next) => {
+    //Get Hashed token
+    const resetPasswordToken = crypto
+      .createHash("sha256")
+      .update(req.params.resettoken)
+      .digest("hex");
+
+    const user = await User.findOne({
+      resetPasswordToken,
+      resetPasswordExpire: { $gt: Date.now() },
     });
+
+    if (!user) {
+      return next(new ErrorResponse("Invalid token", 400));
+    }
+
+    //Set new password
+    user.password = req.body.password;
+    user.resetPasswordToken = undefined;
+    user.resetPasswordToken = undefined;
+    await user.save();
+
+    sendTokenResponse(user, 200, res);
   });
 }
 
