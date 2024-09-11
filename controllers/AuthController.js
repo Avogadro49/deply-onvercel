@@ -25,6 +25,33 @@ class AuthController {
     sendTokenResponse(user, 201, res);
   });
 
+  //? @desc      Update user details
+  //? @route     PUT /api/v1/auth/updatedetails
+  //? @access    Private
+  static updateDetails = asyncMiddleware(async (req, res, next) => {
+    const fieldsToUpdate = {
+      name: req.body.name,
+      email: req.body.email,
+    };
+
+    const user = await User.findByIdAndUpdate(req.user.id, fieldsToUpdate, {
+      new: true,
+      runValidators: true,
+    });
+
+    if (!user) {
+      return res.status(404).json({
+        status: false,
+        message: "User not found",
+      });
+    }
+
+    res.status(200).json({
+      status: true,
+      data: user,
+    });
+  });
+
   //? @desc Login User
   //? @route GET /api/v1/auth/login
   //? @access Public
