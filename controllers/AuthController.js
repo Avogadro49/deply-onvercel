@@ -29,10 +29,19 @@ class AuthController {
   //? @route     PUT /api/v1/auth/updatedetails
   //? @access    Private
   static updateDetails = asyncMiddleware(async (req, res, next) => {
-    const fieldsToUpdate = {
-      name: req.body.name,
-      email: req.body.email,
-    };
+    let fieldsToUpdate = {};
+
+    if (req.body.name)
+      fieldsToUpdate = { ...fieldsToUpdate, name: req.body.name };
+    if (req.body.email)
+      fieldsToUpdate = { ...fieldsToUpdate, email: req.body.email };
+
+    if (Object.keys(fieldsToUpdate).length === 0) {
+      return res.status(400).json({
+        status: false,
+        message: "Please provide name or email to update",
+      });
+    }
 
     const user = await User.findByIdAndUpdate(req.user.id, fieldsToUpdate, {
       new: true,
