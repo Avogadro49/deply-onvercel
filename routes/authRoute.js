@@ -9,5 +9,6 @@ router.post("/login", AuthController.login);
 router.post("/forgotpassword", AuthController.forgotPassword);
 router.put("/resetpassword/:resettoken", AuthController.resetPassword);
 router.put("/updatedetails", authMiddleware.protectRoute,  AuthController.updateDetails);
+router.put("/updatepassword", authMiddleware.protectRoute,  AuthController.updatePassword);
 
 module.exports = router;

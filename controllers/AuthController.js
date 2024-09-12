@@ -61,6 +61,22 @@ class AuthController {
     });
   });
 
+  //? @desc      Update user password
+  //? @route     PUT /api/v1/auth/updatepassword
+  //? @access    Private
+  static updatePassword = asyncMiddleware(async (req, res, next) => {
+    const user = await User.findById(req.user.id).select("+password");
+
+    if (!(await user.matchPassword(req.body.currentPassword))) {
+      return next(new ErrorResponse("Password is incorrect", 401));
+    }
+
+    user.password = req.body.newPassword;
+    await user.save();
+
+    sendTokenResponse(user, 200, res);
+  });
+
   //? @desc Login User
   //? @route GET /api/v1/auth/login
   //? @access Public
