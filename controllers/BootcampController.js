@@ -3,6 +3,7 @@ const Course = require("../models/Course");
 const bootCampResource = require("../resources/BootcampResources");
 const asyncMiddleware = require("../middleware/asyncMiddleware");
 const ErrorResponse = require("../utils/ErrorResponse");
+const ApiFeatures = require("../utils/APIFeatures");
 const { param } = require("../routes/bootcampsRoutes");
 
 class BootcampController {
@@ -25,6 +26,7 @@ class BootcampController {
         success: true,
         pagination: features.pagination,
         data: bootcamps.map((bootcamp) => bootCampResource(bootcamp)),
+        // data: bootcamps,
       });
     } catch (err) {
       res.status(400).json({ success: false, message: err.message });

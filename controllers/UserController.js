@@ -8,21 +8,21 @@ class UserController {
   // @route     GET /api/v1/users
   // @access    Private/Admin
   static getUsers = asyncMiddleware(async (req, res, next) => {
-    const fetures = new ApiFeatures(User.find(), req.query)
+    const features = new ApiFeatures(User.find(), req.query)
       .filter()
       .includeRelationships()
       .select()
       .sort();
 
-    await fetures.paginate();
+    await features.paginate();
 
-    const users = await fetures.query;
+    const users = await features.query;
 
-    const pagination = fetures.pagination;
+    const pagination = features.pagination;
 
     res.status(200).json({
       status: "success",
-      results: users.lenght,
+      results: users.length,
       pagination: pagination,
       data: users,
     });
