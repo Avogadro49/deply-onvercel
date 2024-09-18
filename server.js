@@ -7,6 +7,8 @@ const cookieParser = require("cookie-parser");
 const mongoSanitize = require("express-mongo-sanitize");
 const helmet = require("helmet");
 const xss = require("xss-clean");
+const expressRateLimit = require("express-rate-limit");
+const hpp = require("hpp");
 const { IPinfoWrapper } = require("node-ipinfo");
 const Config = require("./config/config");
 const corsMiddleware = require("./middleware/corsMiddleware");
@@ -54,6 +56,17 @@ app.use(helmet());
 
 // Prevent XSS attacks
 app.use(xss());
+
+// Rate limiting
+const limiter = expressRateLimit({
+  windowMs: 10 * 60 * 1000,
+  max: 100,
+});
+
+app.use(limiter);
+
+//Prevent http param pollution
+app.use(hpp());
 
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
