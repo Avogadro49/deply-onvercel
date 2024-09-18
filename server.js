@@ -4,6 +4,9 @@ const morgan = require("morgan");
 const colors = require("colors");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
+const mongoSanitize = require("express-mongo-sanitize");
+const helmet = require("helmet");
+const xss = require("xss-clean");
 const { IPinfoWrapper } = require("node-ipinfo");
 const Config = require("./config/config");
 const corsMiddleware = require("./middleware/corsMiddleware");
@@ -42,6 +45,15 @@ app.use(cors(Config.corsOptions));
 
 //set cors headers
 app.use(corsMiddleware);
+
+// Sanitize data
+app.use(mongoSanitize());
+
+// Set security headers
+app.use(helmet());
+
+// Prevent XSS attacks
+app.use(xss());
 
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
