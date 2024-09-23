@@ -28,7 +28,8 @@ class CourseController {
     res.status(200).json({
       success: true,
       count: course.length,
-      data: course.map((course) => CourseResource(course)),
+      // data: course.map((course) => CourseResource(course)),
+      data: course,
     });
     // let query;
     // //Create query strings
