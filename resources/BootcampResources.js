@@ -5,11 +5,13 @@ function bootCampResource(bootcamp) {
     id: bootcamp._id,
     name: bootcamp.name,
     email: bootcamp.email,
+    photo: bootcamp.photo,
     createdAt: bootcamp.createdAt,
-    averageCost: bootcamp.averageCost,
+    country: bootcamp.location.country,
+    // averageCost: bootcamp.averageCost,
     description: bootcamp.description,
-    courses: bootcamp.courses,
-    //? full_name: [bootcamp.name, bootcamp.email].join(" "),
+    // courses: bootcamp.courses,
+    // full_name: [bootcamp.name, bootcamp.email].join(" "),
   };
 }
 
